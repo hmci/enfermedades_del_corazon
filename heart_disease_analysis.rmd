@@ -16,9 +16,14 @@ library(tseries)
 ## Descripción del Data set
 El dataset escogido para el desarrollo de la práctica se denomina *Heart Disease Data Set* o conjunto de datos de enfermedades cardiacas. Este dataset se encuentra disponible en repositorio de datos de Kaggle en el siguiente [enlace](https://www.kaggle.com/ronitf/heart-disease-uci).
 
-El conjunto de datos consta de un total de 14 atributos entre discretos y contínuos que recojen información básica de pacientes como edad, sexo y también almacena el resultado de un conjunto de exámenes realizados, obteniendo por ejemplo el nivel de colesterol en la sangre, nivel de azúcar en la sangre, etc.
+El conjunto de datos consta de un total de 14 atributos entre discretos y continuos que recogen información básica de pacientes como edad, sexo y también almacena el resultado de un conjunto de exámenes de salud realizados, obteniendo por ejemplo el nivel de colesterol en la sangre, nivel de azúcar en la sangre, etc.
 
-El dataset tiene como propósito predecir a partir del conjunto de atributos si un paciente determinado es propenso o no a sufrir de algún tipo de enfermedad cardiaca.
+El dataset es importante porque tiene como propósito predecir a partir del conjunto de atributos si un paciente determinado es propenso o no a sufrir de algún tipo de enfermedad cardiaca, se pretende responder preguntas como 
+¿cual es la edad promedio para sufrir este tipo de enfermedad?
+¿Cual  es la probabilidad de  esta enfermedad con relacion al atributo sexo?
+
+
+
 
 Los atributos que conforman el conjunto de datos son:
 
@@ -26,7 +31,7 @@ Los atributos que conforman el conjunto de datos son:
 - *sex* Sexo del paciente
 - *cp* Tipo de dolor en el pecho
 - *trestbps* Presión arterial en reposo
-- *chol* Suero colestoral 
+- *chol* Suero colesterol 
 - *fbs* Glucemia en ayunas
 - *restecg* Resultados electrocardiográficos en reposo
 - *thalach* Ritmo cardiaco máximo alcanzado
@@ -87,6 +92,7 @@ Al revisar el significado de cada variable, nos damos cuenta que las variables q
 En el supuesto caso en que se tuviera atributos que contengan valores nulos o vacíos, la eficacia de las técnicas de tratamiento de estos valores está directamente relacionada con la razón por la cual tuvo su origen el valor perdido. Si tenemos alguna información acerca de ella, es posible que encontremos una regla para completar estos valores, por el contrario, si no tenemos dicha información, es necesario aplicar técnicas de evaluación de los valores perdidos que encuentren algún patrón que permita ya sea completarlos o descartarlos(en el caso que no afecten el análisis),decisión que depende en gran medida del tipo del valor perdido y la importancia del registro en la base de datos (Allison,2001).
 
 ### Identificación y tratamiento de valores extremos.
+
 
 
 
