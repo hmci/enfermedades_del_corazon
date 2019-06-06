@@ -1,0 +1,94 @@
+---
+title: "Práctica 2"
+author: "Diego Castillo"
+date: "4/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(dplyr)
+library(tseries)
+```
+
+## Descripción del Data set
+El dataset escogido para el desarrollo de la práctica se denomina *Heart Disease Data Set* o conjunto de datos de enfermedades cardiacas. Este dataset se encuentra disponible en repositorio de datos de Kaggle en el siguiente [enlace](https://www.kaggle.com/ronitf/heart-disease-uci).
+
+El conjunto de datos consta de un total de 14 atributos entre discretos y contínuos que recojen información básica de pacientes como edad, sexo y también almacena el resultado de un conjunto de exámenes realizados, obteniendo por ejemplo el nivel de colesterol en la sangre, nivel de azúcar en la sangre, etc.
+
+El dataset tiene como propósito predecir a partir del conjunto de atributos si un paciente determinado es propenso o no a sufrir de algún tipo de enfermedad cardiaca.
+
+Los atributos que conforman el conjunto de datos son:
+
+- *age* Edad del paciente
+- *sex* Sexo del paciente
+- *cp* Tipo de dolor en el pecho
+- *trestbps* Presión arterial en reposo
+- *chol* Suero colestoral 
+- *fbs* Glucemia en ayunas
+- *restecg* Resultados electrocardiográficos en reposo
+- *thalach* Ritmo cardiaco máximo alcanzado
+- *exang* Angina inducida por el ejercicio
+- *oldpeak* Depresión ST inducida por el ejercicio en relación con el descanso
+- *slope* La pendiente del segmento pico del ejercicio ST
+- *ca* Número de vasos principales (0-3) coloreados por fluoroscopia
+- *thal* 3 = normal; 6 = defecto fijo; 7 = defecto reversible
+- *target* Variable predictora
+
+## Integración y selección de los datos de interés a analizar.
+Se relaiza la carga del conjunto de datos.
+
+```{r}
+# Se fija el espacio de trabajo
+setwd("C:/Users/dell/Dropbox/maestria/Tipología y ciclo de vida de los datos/Práctica 2")
+
+# Carga de los datos
+heart <- read.csv('heart.csv', header = TRUE)
+
+# Revisión de los datos
+head(heart)
+
+# Realizamos un análisis preliminar de los datos
+summary(heart)
+
+# cambiamos el tipo de dato del atributo 'sex' a factor.
+heart <- heart %>% mutate(sex=ifelse(sex==1,"hombre","mujer"))
+
+# Revisamos de nuevo la estructura del dataset
+str(heart)
+```
+
+## Limpieza de los datos.
+
+### ¿Los datos contienen ceros o elementos vacíos? ¿Cómo gestionarías cada uno de estos casos?
+Primero se realiza un análisis del dataset para buscar elementos vacíos o nulos.
+```{r}
+# Este comando realiza la búsqueda de elementos con valores nulos dentro del dataset.
+sapply(heart,function(x) sum(is.na(x)))
+
+# Se realiza la búsqueda de elementos que contengan valores vacios
+colSums(heart =="")
+
+```
+
+Como se puede observar, el data set no contiene valores nulos ni vacios. Por lo que para estos casos no es necesario realiza ninguna accion. En el siguiente comando examinamos la presencia de valores iguales a 0.
+
+```{r}
+# Comando para determinar elementos con valores iguales a 0
+colSums(heart ==0)
+```
+
+Según el resultado, se tiene que algunas de los atributos contienen valores iguales a 0, específicamente los atributos `cp`, `fbs`,`restecg`,`exang`,`oldpeak`,`slope`,`ca`,`tal` y `target`.
+
+Al revisar el significado de cada variable, nos damos cuenta que las variables que contienen valores iguales a 0 son resultados de exámenes aplicados a los pacientes, y que, según el caso pueden ser iguales a 0. Por lo que en este caso tampoco se realiza ninguna acción.
+
+En el supuesto caso en que se tuviera atributos que contengan valores nulos o vacíos, la eficacia de las técnicas de tratamiento de estos valores está directamente relacionada con la razón por la cual tuvo su origen el valor perdido. Si tenemos alguna información acerca de ella, es posible que encontremos una regla para completar estos valores, por el contrario, si no tenemos dicha información, es necesario aplicar técnicas de evaluación de los valores perdidos que encuentren algún patrón que permita ya sea completarlos o descartarlos(en el caso que no afecten el análisis),decisión que depende en gran medida del tipo del valor perdido y la importancia del registro en la base de datos (Allison,2001).
+
+### Identificación y tratamiento de valores extremos.
+
+
+
+
+
